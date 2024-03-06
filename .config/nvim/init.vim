@@ -1,8 +1,11 @@
 set nocompatible
 filetype off
 
-
-call plug#begin('~/.vim/bundle')
+if has('win32') || has('win64')
+    call plug#begin('D:\keep\neovim-qt\bundle')
+else
+    call plug#begin('~/.vim/bundle')
+endif
 
 "vim-scripts
 Plug 'joshdick/onedark.vim'
@@ -380,7 +383,7 @@ local clangd_opts = {
                             --init_options = {
                             --    clangdFileStatus  = true
                             --    },
-                            cmd = {"/usr/bin/clangd"},
+                            cmd = { (vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1) and "D:/keep/clangd/bin/clangd.exe" or "/usr/bin/clangd" },
                             capabilities =  capabilities 
                           }
 
